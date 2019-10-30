@@ -1,0 +1,300 @@
+@import "./_variables.scss"; // 引入（文件需以_开头）申明的变量
+
+/* reset */
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* @media all and (min-width: 375px) {
+  html {
+    font-size: 16px;
+  }
+} */
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+input,
+textarea,
+p,
+th,
+td,
+img {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 0;
+  font-weight: normal;
+}
+
+body {
+  font-family: Arial, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei,
+    SimSun, sans-serif;
+  line-height: 1.2em;
+  background: #f1f1f1;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #999;
+  text-decoration: none;
+}
+
+em,
+i,
+strong,
+th {
+  font-style: normal;
+  font-weight: normal;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* width、height */
+.w-100 {
+  width: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+
+/* color */
+@each $colorKey, $color in $colors {
+  // 文字颜色类
+  .text-#{$colorKey} {
+    color: $color;
+  }
+  // 背景颜色类
+  .bg-#{$colorKey} {
+    background-color: $color;
+  }
+}
+
+/* dispaly */
+@each $displayKey, $displayVal in $dispalys {
+  .d-#{$displayKey} {
+    display: $displayVal;
+  }
+}
+
+/* position */
+@each $positionKey, $positionVal in $positions {
+  .pos-#{$positionKey} {
+    position: $positionVal;
+  }
+}
+
+/* text align */
+@each $var in (left, center, right) {
+  .text-#{$var} {
+    text-align: $var !important;
+  }
+}
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* font size */
+@each $sizeKey, $size in $font-sizes {
+  .fz-#{$sizeKey} {
+    font-size: $base-font-size * $size !important;
+  }
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+/* flex */
+.flex-column {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-grow-1 {
+  flex-grow: 1;
+}
+// justify-content
+@each $key, $value in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $value;
+  }
+}
+// align-items
+@each $key, $value in $flex-ai {
+  .ai-#{$key} {
+    align-items: $value;
+  }
+}
+
+/* spacing */
+@each $typeKey, $type in $spacing-types {
+  // m-1 => margin: 1rem
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typeKey}-#{$sizeKey} {
+      #{$type}: $spacing-base-size * $size;
+    }
+  }
+
+  // mx-1 my-1 => {margin-left, margin-right: 1rem}
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typeKey}x-#{$sizeKey} {
+      #{$type}-left: $spacing-base-size * $size;
+      #{$type}-right: $spacing-base-size * $size;
+    }
+    .#{$typeKey}y-#{$sizeKey} {
+      #{$type}-top: $spacing-base-size * $size;
+      #{$type}-bottom: $spacing-base-size * $size;
+    }
+  }
+
+  // mt-1 => margin-bottom: 1rem
+  @each $directionKey, $direction in $spacing-directions {
+    @each $sizeKey, $size in $spacing-sizes {
+      .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+        #{$type}-#{$direction}: $spacing-base-size * $size;
+      }
+    }
+  }
+}
+
+/* overflow */
+@each $overflowKey, $overflowVal in $overflows {
+  .overflow-#{$overflowKey} {
+    overflow: $overflowVal;
+  }
+}
+.overflow-scroll-x {
+  overflow-x: auto;
+}
+.overflow-scroll-y {
+  overflow-y: auto;
+}
+
+/* opacity */
+@each $opacityKey, $opacityVal in $opacities {
+  .opacity-#{$opacityKey} {
+    opacity: $opacityVal;
+  }
+}
+
+/* cursor */
+@each $cursorKey, $cursorVal in $cursors {
+  .cursor-#{$cursorKey} {
+    cursor: $cursorVal;
+  }
+}
+
+/* clearfix */
+.clearfix:after {
+  content: "";
+  visibility: hidden;
+  clear: both;
+  display: block;
+  height: 0;
+}
+.clearfix {
+  *zoom: 1;
+}
+
+//btn
+.btn {
+  border: none;
+  border-radius: 0.153rem;
+  font-size: map-get($font-sizes, 12) * $base-font-size;
+  padding: 0.2rem 0.6rem;
+}
+
+/* sprite 精灵图 */
+.sprite {
+  background: url(../images/index.png) no-repeat 0 0;
+  background-size: 28.846rem 35rem;
+  display: inline-block;
+  &.sprite-news {
+    width: 1.769rem;
+    height: 1.538rem;
+    background-position: 63.546% 15.517%;
+  }
+  &.sprite-story {
+    width: 1.769rem;
+    height: 1.538rem;
+    background-position: 90.483% 15.614%;
+  }
+  &.sprite-store {
+    width: 1.461rem;
+    height: 1.692rem;
+    background-position: 36.746% 0.924%;
+  }
+  &.sprite-experience {
+    width: 1.538rem;
+    height: 1.538rem;
+    background-position: 10.408% 15.517%;
+  }
+  &.sprite-new {
+    width: 1.538rem;
+    height: 1.615rem;
+    background-position: 89.733% 1.266%;
+  }
+  &.sprite-glory {
+    width: 1.846rem;
+    height: 1.538rem;
+    background-position: 36.467% 15.287%;
+  }
+  &.sprite-community {
+    width: 2rem;
+    height: 1.615rem;
+    background-position: 9.728% 1.266%;
+  }
+  &.sprite-campsite {
+    width: 1.846rem;
+    height: 1.769rem;
+    background-position: 63.3% 0.927%;
+  }
+  &.sprite-wechat {
+    width: 1.846rem;
+    height: 1.615rem;
+    background-position: 0 96.207%;
+  }
+  &.sprite-version {
+    width: 2rem;
+    height: 1.846rem;
+    background: url(../images/version-icon.png) no-repeat;
+  }
+  &.sprite-arrow {
+    width: 0.769rem;
+    height: 0.769rem;
+    background-position: 38.577% 52.076%;
+  }
+}

@@ -1,0 +1,135 @@
+/* color */
+$colors: (
+  "primary": #db9e3f,
+  "info": #4b67af,
+  "white": #fff,
+  "light": #f9f9f9,
+  "light-1": #d4d9de,
+  "gray": #999,
+  "gray-1": #666,
+  "dark-1": #343440,
+  "dark": #222,
+  "black": #000
+);
+$border-color: map-get(
+  $map: $colors,
+  $key: "light-1"
+);
+
+/* dispaly */
+$dispalys: (
+  block: block,
+  inline: inline,
+  inline-block: inline-block,
+  flex: flex,
+  none: none,
+  table: table
+);
+
+/* position */
+$positions: (
+  relative: relative,
+  absolute: absolute,
+  fixed: fixed,
+  sticky: sticky
+);
+
+/* font size */
+$base-font-size: 1rem;
+$font-sizes: (
+  8: 0.6154,
+  10: 0.769,
+  12: 0.923,
+  13: 1,
+  14: 1.076,
+  16: 1.23,
+  18: 1.384,
+  20: 1.538,
+  22: 1.692,
+  24: 1.846,
+  26: 2
+);
+
+/* flex */
+// justify-content
+$flex-jc: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  // 两边贴主轴的起终点 剩余的平分空白
+    between: space-between,
+  // 每一个项目的左右两侧空白相等 项目之间的空白是两倍的关系
+    around: space-around,
+  //所有项目的左右两侧的空白相等
+    evenly: space-evenly
+);
+
+// align-items
+$flex-ai: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  // 拉伸对齐（等高）
+    stretch: stretch,
+  // 文字基线对齐
+    baseline: baseline
+);
+
+/* spacing */
+$spacing-types: (
+  m: margin,
+  p: padding
+);
+// 方向
+$spacing-directions: (
+  t: top,
+  b: bottom,
+  l: left,
+  r: right
+);
+// 基数
+$spacing-base-size: 1rem;
+// 倍数
+$spacing-sizes: (
+  0: 0,
+  1: 0.25,
+  2: 0.5,
+  3: 1,
+  4: 1.25,
+  5: 1.5,
+  6: 1.725,
+  8: 2,
+  9: 2.5,
+  10: 3
+);
+
+/* overflow */
+$overflows: (
+  hidden: hidden,
+  scroll: scroll,
+  auto: auto
+);
+
+/* opacity */
+$opacities: (
+  0: 0,
+  10p: 10%,
+  20p: 20%,
+  30p: 30%,
+  40p: 40%,
+  50p: 50%,
+  60p: 60%,
+  70p: 70%,
+  80p: 80%,
+  90p: 90%,
+  100p: 100%
+);
+
+/* cursor */
+$cursors: (
+  pointer: pointer,
+  move: move,
+  text: text,
+  wait: wait,
+  help: help
+);
