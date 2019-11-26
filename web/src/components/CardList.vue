@@ -4,19 +4,19 @@
     <ol class="d-flex jc-between">
       <li class="nav-item"
           :class="{'cur': currentIndex === index}"
-          v-for="(item, index) in cardNavCategories"
+          v-for="(item, index) in categories"
           :key="index"
-          @click="() => currentIndex = index">
+          @click="$refs.list.swiper.slideTo(index)">
         <div class="nav-link">{{item.name}}</div>
       </li>
     </ol>
     <div class="pt-3">
-      <swiper>
-        <swiper-slide v-for="(category, index) in cardNavCategories"
-                      :key="index">
-          <slot name="items"
-                :category='category'>
-          </slot>
+      <swiper ref="list" 
+              @slide-change="currentIndex = $refs.list.swiper.realIndex"
+              :options="{autoHeight: true}">
+        <swiper-slide v-for="(category, index) in categories" :key="index">
+          <!-- 将category数据通过插槽传递出去 -->
+          <slot name="items" :category='category'></slot>
         </swiper-slide>
       </swiper>
     </div>
@@ -34,7 +34,7 @@ export default {
       type: String,
       required: true
     },
-    cardNavCategories: {
+    categories: {
       type: Array,
       required: true,
       defaults: []

@@ -15,10 +15,10 @@
                        label="称号">
       </el-table-column>
 
-      <el-table-column prop="avater"
+      <el-table-column prop="avatar"
                        label="头像">
         <template slot-scope="scope">
-          <img :src="scope.row.avater"
+          <img :src="scope.row.avatar"
                style="height: 3rem">
         </template>
       </el-table-column>

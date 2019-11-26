@@ -5,7 +5,9 @@ const schema = new mongoose.Schema({
   // 名字
   name: { type: String },
   // 头像
-  avater: { type: String },
+  avatar: { type: String },
+  // 背景图
+  banner: { type: String },
   // 称号
   title: { type: String },
   // 分类 一个英雄可能对应多个分类 => 关联Category
@@ -26,6 +28,10 @@ const schema = new mongoose.Schema({
       tips: { type: String }
     }
   ],
+  // 召唤师技能
+  summonerSkills: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Skill" }],
+  // 铭文
+  inscriptions: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Inscription" }],
   // 顺风出装
   items1: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Item" }],
   // 逆风出装
@@ -46,4 +52,4 @@ const schema = new mongoose.Schema({
 });
 
 // 创建模型
-module.exports = mongoose.model("Hero", schema);
+module.exports = mongoose.model("Hero", schema, "heroes");

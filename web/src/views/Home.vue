@@ -31,26 +31,44 @@
     </div>
 
     <!-- card -->
-    <m-list-card icon="Menu"
-                 title="新闻咨询"
-                 :cardNavCategories="cardNavCategories">
+    <m-list-card icon="menu"
+                 title="新闻资讯"
+                 :categories="newsCategories">
       <template #items='{category}'>
         <ul>
-          <li class="py-2 d-flex fz-14"
-              v-for="(item, index) in category.newsList"
-              :key="index">
-            <span>[{{item.categoryName}}]</span>
-            <span class="mx-1">|</span>
-            <span class="text-ellipsis flex-1">{{item.title}}</span>
-            <time class="text-right text-gray fz-12">{{item.date}}</time>
-          </li>
+          <router-link tag="li"
+                       :to="`/articles/${item._id}`"
+                       class="py-2 d-flex fz-14"
+                       v-for="(item, index) in category.newsList"
+                       :key="index">
+            <span class="text-gray">[{{item.categoryName}}]</span>
+            <span class="px-2">|</span>
+            <span class="text-ellipsis flex-1 text-dark-1 pr-3">{{item.title}}</span>
+            <time class="text-right text-gray-1 fz-12">{{item.createdAt | date}}</time>
+          </router-link>
         </ul>
       </template>
     </m-list-card>
 
     <m-list-card icon='hero'
                  title="英雄列表"
-                 :cardNavCategories="[]">
+                 :categories="heroCategories">
+      <template #items='{category}'>
+        <ol class="d-flex flex-wrap"
+            style="margin: 0 -0.5rem">
+          <router-link tag="li"
+                       :to="`/heroes/${hero._id}`"
+                       class="p-2 text-center"
+                       style="width: 20%"
+                       v-for="(hero, index) in category.heroList"
+                       :key="index">
+            <img :src="hero.avatar"
+                 alt=""
+                 class="w-100">
+            <div>{{hero.name}}</div>
+          </router-link>
+        </ol>
+      </template>
     </m-list-card>
 
   </div>
@@ -137,50 +155,25 @@ export default {
           sprite: "sprite-version"
         }
       ],
-      // cardNavCategories data
-      cardNavCategories: [
-        {
-          name: "热门",
-          newsList: new Array(5).fill(1).map(v => ({
-            categoryName: "公告",
-            title: "【已开服】8月15日正式服“五虎上将”版本更新公告",
-            date: "08/16"
-          }))
-        },
-        {
-          name: "新闻",
-          newsList: new Array(5).fill(1).map(v => ({
-            categoryName: "新闻",
-            title: "8.18王者无限开放计划交流会预告",
-            date: "08/16"
-          }))
-        },
-        {
-          name: "公告",
-          newsList: new Array(5).fill(1).map(v => ({
-            categoryName: "公告",
-            title: "安卓更新相关问题指引",
-            date: "08/16"
-          }))
-        },
-        {
-          name: "活动",
-          newsList: new Array(5).fill(1).map(v => ({
-            categoryName: "活动",
-            title: "【预告】决战世冠拿专属回城",
-            date: "08/16"
-          }))
-        },
-        {
-          name: "赛事",
-          newsList: new Array(5).fill(1).map(v => ({
-            categoryName: "赛事",
-            title: "赛程过半，城市赛省赛高光时刻齐回顾！",
-            date: "08/16"
-          }))
-        }
-      ]
+      // 新闻
+      newsCategories: [],
+      // 英雄
+      heroCategories: []
     };
+  },
+  methods: {
+    async fetchNewsCategories() {
+      const res = await this.$http.get("news/list");
+      this.newsCategories = res.data;
+    },
+    async fetchHeroCategories() {
+      const res = await this.$http.get("heroes/list");
+      this.heroCategories = res.data;
+    }
+  },
+  created() {
+    this.fetchNewsCategories();
+    this.fetchHeroCategories();
   }
 };
 </script>

@@ -24,6 +24,13 @@
             <el-menu-item index="/items/list">物品列表</el-menu-item>
           </el-menu-item-group>
 
+          <!-- 铭文 -->
+          <el-menu-item-group>
+            <template slot="title">铭文</template>
+            <el-menu-item index="/inscriptions/create">新建铭文</el-menu-item>
+            <el-menu-item index="/inscriptions/list">铭文列表</el-menu-item>
+          </el-menu-item-group>
+
           <!-- <el-submenu index="1-3">
             <template slot="title">英雄</template>
             <el-menu-item index="/heroes/create">新建英雄</el-menu-item>
@@ -35,6 +42,13 @@
             <template slot="title">英雄</template>
             <el-menu-item index="/heroes/create">新建英雄</el-menu-item>
             <el-menu-item index="/heroes/list">英雄列表</el-menu-item>
+          </el-menu-item-group>
+
+          <!-- 召唤师技能 -->
+          <el-menu-item-group>
+            <template slot="title">召唤师技能</template>
+            <el-menu-item index="/skills/create">新建召唤师技能</el-menu-item>
+            <el-menu-item index="/skills/list">召唤师技能列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
 

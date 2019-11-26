@@ -54,6 +54,23 @@ const router = new Router({
           name: "itemsList",
           component: () => import("./views/Item/ItemList.vue")
         },
+        /* 铭文 */
+        {
+          path: "/inscriptions/create",
+          name: "inscriptionCreate",
+          component: () => import("./views/Inscription/InscriptionEdit.vue")
+        },
+        {
+          path: "/inscriptions/edit/:id",
+          name: "inscriptionEdit",
+          component: () => import("./views/Inscription/InscriptionEdit.vue"),
+          props: true
+        },
+        {
+          path: "/inscriptions/list",
+          name: "inscriptionsList",
+          component: () => import("./views/Inscription/InscriptionList.vue")
+        },
         /* 英雄 */
         {
           path: "/heroes/create",
@@ -70,6 +87,23 @@ const router = new Router({
           path: "/heroes/list",
           name: "heroesList",
           component: () => import("./views/Hero/HeroList.vue")
+        },
+        /* 召唤师技能 */
+        {
+          path: "/skills/create",
+          name: "skillsCreate",
+          component: () => import("./views/Skill/SkillEdit.vue")
+        },
+        {
+          path: "/skills/edit/:id",
+          name: "skillsEdit",
+          component: () => import("./views/Skill/SkillEdit.vue"),
+          props: true
+        },
+        {
+          path: "/skills/list",
+          name: "skillsList",
+          component: () => import("./views/Skill/SkillList.vue")
         },
         /* 文章 */
         {

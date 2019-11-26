@@ -1,0 +1,86 @@
+{
+  "id": "1521082",
+  "name": "王者荣耀",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "84789",
+      "name": "mobile-back",
+      "font_class": "back",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "1196936",
+      "name": "menu-1",
+      "font_class": "menu",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "1238402",
+      "name": "more",
+      "font_class": "more",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "1375630",
+      "name": "hero",
+      "font_class": "hero",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "3554433",
+      "name": "分享",
+      "font_class": "fenxiang",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "4460257",
+      "name": "心 爱心",
+      "font_class": "xinaixin",
+      "unicode": "e79d",
+      "unicode_decimal": 59293
+    },
+    {
+      "icon_id": "5137183",
+      "name": "图文",
+      "font_class": "tuwen",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "5155303",
+      "name": "分享",
+      "font_class": "fenxiang1",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "5857608",
+      "name": "next",
+      "font_class": "next",
+      "unicode": "e6c6",
+      "unicode_decimal": 59078
+    },
+    {
+      "icon_id": "8344199",
+      "name": "圆圈",
+      "font_class": "yuanquan",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "10337412",
+      "name": "video",
+      "font_class": "video",
+      "unicode": "e761",
+      "unicode_decimal": 59233
+    }
+  ]
+}

@@ -22,10 +22,25 @@
                        :action="uploadUrl"
                        :headers="getAuthHeaders()"
                        :show-file-list="false"
-                       :on-success="handleAvatarSuccess"
+                       :on-success="res => this.$set(model, 'avatar', res.url)"
                        :before-upload="beforeAvatarUpload">
-              <img v-if="model.avater"
-                   :src="model.avater"
+              <img v-if="model.avatar"
+                   :src="model.avatar"
+                   class="avatar">
+              <i v-else
+                 class="el-icon-plus avatar-uploader-icon"></i>
+            </el-upload>
+          </el-form-item>
+          <!-- 背景图 -->
+          <el-form-item label="背景图">
+            <el-upload class="avatar-uploader"
+                       :action="uploadUrl"
+                       :headers="getAuthHeaders()"
+                       :show-file-list="false"
+                       :on-success="res => this.$set(model, 'banner', res.url)"
+                       :before-upload="beforeAvatarUpload">
+              <img v-if="model.banner"
+                   :src="model.banner"
                    class="avatar">
               <i v-else
                  class="el-icon-plus avatar-uploader-icon"></i>
@@ -73,9 +88,41 @@
             </el-rate>
           </el-form-item>
 
+          <!-- 召唤师技能 -->
+          <el-form-item label="召唤师技能">
+            <el-select multiple
+                       filterable
+                       clearable
+                       :multiple-limit="2"
+                       v-model="model.summonerSkills">
+              <el-option v-for="item in summonerSkillsData"
+                         :key="item._id"
+                         :label="item.name"
+                         :value="item._id">
+              </el-option>
+            </el-select>
+          </el-form-item>
+
+          <!-- 铭文 -->
+          <el-form-item label="铭文">
+            <el-select multiple
+                       filterable
+                       clearable
+                       :multiple-limit="3"
+                       v-model="model.inscriptions">
+              <el-option v-for="item in inscriptionsData"
+                         :key="item._id"
+                         :label="item.name"
+                         :value="item._id">
+              </el-option>
+            </el-select>
+          </el-form-item>
+
           <!-- 顺风出装 -->
           <el-form-item label="顺风出装">
             <el-select multiple
+                       filterable
+                       clearable
                        v-model="model.items1">
               <el-option v-for="item in items"
                          :key="item._id"
@@ -84,9 +131,12 @@
               </el-option>
             </el-select>
           </el-form-item>
+
           <!-- 逆风出装 -->
           <el-form-item label="逆风出装">
             <el-select multiple
+                       filterable
+                       clearable
                        v-model="model.items2">
               <el-option v-for="item in items"
                          :key="item._id"
@@ -199,12 +249,15 @@ export default {
   },
   data() {
     return {
-      categories: [], // 英雄分类
-      items: [], // 装备
+      categories: [], // 英雄分类数据
+      items: [], // 装备数据
+      summonerSkillsData: [], // 召唤师技能数据
+      inscriptionsData: [], //铭文数据
       model: {
         name: "",
         title: "",
-        avater: "",
+        avatar: "",
+        banner: "",
         scores: {
           difficult: 0,
           skills: 0,
@@ -214,6 +267,8 @@ export default {
         skills: [], // 技能
         items1: [], // 顺风出装
         items2: [], // 逆风出装
+        summonerSkills: [], // 召唤师技能
+        inscriptions: [], // 铭文
         usageTips: "",
         battleTips: "",
         teamTips: ""
@@ -254,18 +309,23 @@ export default {
       const res = await this.$http.get(`rest/items`);
       this.items = res.data;
     },
+    // 请求召唤师技能数据
+    async fetchSummonerSkills() {
+      const res = await this.$http.get(`rest/skills`);
+      this.summonerSkillsData = res.data;
+    },
+    // 请求铭文数据
+    async fetchInscriptions() {
+      const res = await this.$http.get(`rest/inscriptions`);
+      this.inscriptionsData = res.data;
+    },
     // 反显图片
     handleAvatarSuccess(res) {
-      this.model.avater = res.url;
+      this.model.avatar = res.url;
     },
     // 校验上传图片大小
     beforeAvatarUpload(file) {
-      // const isJPG = file.type === "image/jpeg";
       const isLt2M = file.size / 1024 / 1024 < 2;
-
-      /* if (!isJPG) {
-        this.$message.error("上传头像图片只能是 JPG 格式!");
-      } */
       if (!isLt2M) {
         this.$message.error("上传头像图片大小不能超过 2MB!");
       }
@@ -276,6 +336,8 @@ export default {
   created() {
     this.fetchCategories();
     this.fetchItems();
+    this.fetchSummonerSkills();
+    this.fetchInscriptions();
     // id存在时才请求数据
     this.id && this.fetch();
   }

@@ -65,7 +65,6 @@ a {
 
 em,
 i,
-strong,
 th {
   font-style: normal;
   font-weight: normal;
@@ -96,6 +95,13 @@ table {
   }
 }
 
+/* border */
+@each $direction in (top, right, bottom, left) {
+  .border-#{$direction} {
+    border-#{$direction}: 1px solid $border-color;
+  }
+}
+
 /* dispaly */
 @each $displayKey, $displayVal in $dispalys {
   .d-#{$displayKey} {
@@ -117,6 +123,7 @@ table {
   }
 }
 .text-ellipsis {
+  display: inline-block;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -297,4 +304,10 @@ table {
     height: 0.769rem;
     background-position: 38.577% 52.076%;
   }
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
