@@ -24,7 +24,8 @@
         <span>{{model.categories.map(v => v.name).join('/')}}</span>
         <div class="d-flex pt-2 jc-between">
           <!-- scores -->
-          <div class="d-flex scores ai-center fz-12">
+          <div class="d-flex scores ai-center fz-12"
+               v-if="model.scores">
             <span>难度</span><span class="badge bg-brown mx-2"><em>{{model.scores.difficult}}</em></span>
             <span>技能</span><span class="badge bg-blue-1 mx-2"><em>{{model.scores.skills}}</em></span>
             <span>攻击</span><span class="badge bg-danger mx-2"><em>{{model.scores.attack}}</em></span>
@@ -38,6 +39,38 @@
           </router-link>
         </div>
       </div>
+    </div>
+    <!-- content -->
+    <div>
+      <div class="bg-white px-3">
+        <div class="d-flex border-bottom jc-around pt-3 pb-2">
+          <div class="nav-item cur">英雄初识</div>
+          <div class="nav-item">进阶攻略</div>
+        </div>
+      </div>
+      <swiper>
+        <!-- 英雄初识 -->
+        <swiper-slide>
+          <div class="bg-white p-3 border-bottom">
+            <div class="d-flex">
+              <router-link tag="button"
+                           to="/"
+                           class="btn btn-lg flex-1">
+                <i class="iconfont icon-video fz-20 mr-1"></i>
+                英雄介绍视频
+              </router-link>
+              <router-link tag="button"
+                           to="/"
+                           class="btn btn-lg flex-1 ml-2">
+                <i class="iconfont icon-tuwen fz-16"></i>
+                一图识英雄
+              </router-link>
+            </div>
+          </div>
+        </swiper-slide>
+        <!-- 进阶攻略 -->
+        <swiper-slide></swiper-slide>
+      </swiper>
     </div>
   </div>
 </template>
@@ -70,7 +103,7 @@ export default {
 <style lang="scss" scoped>
 .page-hero {
   .top {
-    height: 50vw;
+    height: 51vw;
     background: #fff no-repeat top center;
     background-size: auto 100%;
     .info {

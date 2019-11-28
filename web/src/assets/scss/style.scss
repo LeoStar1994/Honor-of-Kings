@@ -242,6 +242,22 @@ table {
   border-radius: 0.153rem;
   font-size: map-get($font-sizes, 12) * $base-font-size;
   padding: 0.2rem 0.6rem;
+  &.btn-lg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i {
+      color: map-get($map: $colors, $key: "primary");
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-right: 0.5rem;
+    }
+    background: map-get($map: $colors, $key: "white-1");
+    border: 1px solid map-get($map: $colors, $key: "white-2");
+    border-radius: 0.384rem;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+  }
 }
 
 /* sprite 精灵图 */
@@ -303,6 +319,13 @@ table {
     width: 0.769rem;
     height: 0.769rem;
     background-position: 38.577% 52.076%;
+  }
+}
+
+.nav-item {
+  &.cur {
+    color: map-get($map: $colors, $key: "primary");
+    border-bottom: 2px solid map-get($map: $colors, $key: "primary");
   }
 }
 

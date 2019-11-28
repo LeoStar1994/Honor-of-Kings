@@ -11,12 +11,14 @@
       </li>
     </ol>
     <div class="pt-3">
-      <swiper ref="list" 
+      <swiper ref="list"
               @slide-change="currentIndex = $refs.list.swiper.realIndex"
               :options="{autoHeight: true}">
-        <swiper-slide v-for="(category, index) in categories" :key="index">
+        <swiper-slide v-for="(category, index) in categories"
+                      :key="index">
           <!-- 将category数据通过插槽传递出去 -->
-          <slot name="items" :category='category'></slot>
+          <slot name="items"
+                :category='category'></slot>
         </swiper-slide>
       </swiper>
     </div>
@@ -53,14 +55,6 @@ export default {
   border-bottom: 1px solid $border-color;
   .card-header {
     border-bottom: 1px solid $border-color;
-  }
-  .card-body {
-    .nav-item {
-      &.cur {
-        color: map-get($map: $colors, $key: "primary");
-        border-bottom: 2px solid map-get($map: $colors, $key: "primary");
-      }
-    }
   }
 }
 </style>
