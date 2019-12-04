@@ -131,6 +131,14 @@
               </el-option>
             </el-select>
           </el-form-item>
+          <!-- 顺风出装tips -->
+          <el-form-item label="顺风出装tips">
+            <el-input type="textarea"
+                      resize="none"
+                      placeholder="请输入顺风出装tips"
+                      v-model="model.items1Tips">
+            </el-input>
+          </el-form-item>
 
           <!-- 逆风出装 -->
           <el-form-item label="逆风出装">
@@ -144,6 +152,14 @@
                          :value="item._id">
               </el-option>
             </el-select>
+          </el-form-item>
+          <!-- 逆风出装tips -->
+          <el-form-item label="逆风出装tips">
+            <el-input type="textarea"
+                      resize="none"
+                      placeholder="请输入逆风出装tips"
+                      v-model="model.items2Tips">
+            </el-input>
           </el-form-item>
 
           <!-- 使用技巧 -->
@@ -205,6 +221,18 @@
                   <i v-else
                      class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
+              </el-form-item>
+              <el-form-item label="冷却值">
+                <el-input v-model="item.delay"
+                          resize="none"
+                          placeholder="请输入技能冷却值">
+                </el-input>
+              </el-form-item>
+              <el-form-item label="消耗">
+                <el-input v-model="item.cost"
+                          resize="none"
+                          placeholder="请输入技能消耗">
+                </el-input>
               </el-form-item>
               <el-form-item label="描述">
                 <el-input v-model="item.description"

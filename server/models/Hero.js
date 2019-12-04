@@ -25,7 +25,9 @@ const schema = new mongoose.Schema({
       icon: { type: String },
       name: { type: String },
       description: { type: String },
-      tips: { type: String }
+      tips: { type: String },
+      delay: { type: String },
+      cost: { type: String }
     }
   ],
   // 召唤师技能
@@ -34,8 +36,10 @@ const schema = new mongoose.Schema({
   inscriptions: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Inscription" }],
   // 顺风出装
   items1: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Item" }],
+  items1Tips: { type: String },
   // 逆风出装
   items2: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Item" }],
+  items2Tips: { type: String },
   // 使用技巧
   usageTips: { type: String },
   // 对抗技巧

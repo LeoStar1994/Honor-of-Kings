@@ -912,7 +912,7 @@ module.exports = app => {
   router.get("/heroes/:id", async (req, res) => {
     const id = req.params.id;
     const data = await Hero.findById(id)
-      .populate("categories")
+      .populate("categories items1 items2 summonerSkills inscriptions")
       .lean();
     res.send(data);
   });

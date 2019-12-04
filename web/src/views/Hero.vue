@@ -51,21 +51,141 @@
       <swiper>
         <!-- 英雄初识 -->
         <swiper-slide>
-          <div class="bg-white p-3 border-bottom">
-            <div class="d-flex">
-              <router-link tag="button"
-                           to="/"
-                           class="btn btn-lg flex-1">
-                <i class="iconfont icon-video fz-20 mr-1"></i>
-                英雄介绍视频
-              </router-link>
-              <router-link tag="button"
-                           to="/"
-                           class="btn btn-lg flex-1 ml-2">
-                <i class="iconfont icon-tuwen fz-16"></i>
-                一图识英雄
-              </router-link>
+          <div class="bg-drak-1">
+            <div class="bg-white p-3 border-bottom">
+              <div class="d-flex">
+                <router-link tag="button"
+                             to="/"
+                             class="btn btn-lg flex-1">
+                  <i class="iconfont icon-video fz-22"></i>
+                  <span>英雄介绍视频</span>
+                </router-link>
+                <router-link tag="button"
+                             to="/"
+                             class="btn btn-lg flex-1 ml-2">
+                  <i class="iconfont icon-tuwen fz-18"></i>
+                  <span class="ml-2">一图识英雄</span>
+                </router-link>
+              </div>
+              <!-- skills -->
+              <div class="skill d-flex pt-5 pb-5 jc-around">
+                <img :src="item.icon"
+                     v-for="(item, index) in model.skills"
+                     :class="{active: currentSkillIndex === index}"
+                     @click="currentSkillIndex = index"
+                     :key="index"
+                     alt="">
+              </div>
+              <div v-if="currentSkill">
+                <div class="title d-flex mt-2 mb-5">
+                  <h3 class="fw-700 mr-5">{{currentSkill.name}}</h3>
+                  <span class="fz-12 text-gray">(冷却值：{{currentSkill.delay}} 消耗：
+                    {{currentSkill.cost}})</span>
+                </div>
+                <p style="line-height: 1.6em;">{{currentSkill.description}}</p>
+                <div class="border-bottom mt-2 mb-3"></div>
+                <p class="text-gray-1 pb-2"
+                   style="line-height: 1.6em;">小提示：{{currentSkill.tips}}</p>
+              </div>
             </div>
+
+            <!-- 加点建议 -->
+            <m-card title="加点建议"
+                    icon="yuanquan"
+                    plain>
+              <div class="d-flex punctuate">
+                <ul class="d-flex flex-1 text-center">
+                  <li v-for="(item, index) in model.skills.slice(1, 3)"
+                      :key="index">
+                    <p class="fz-16">{{index === 0 ? '主升': '副升'}}</p>
+                    <img :src="item.icon"
+                         alt=""
+                         class="mt-3 mb-2">
+                    <span class="fz-12">{{item.name}}</span>
+                  </li>
+                </ul>
+                <div class="flex-1 text-center summonerSkill">
+                  <p class="fz-16">召唤师技能</p>
+                  <ol class="d-flex">
+                    <li v-for="item in model.summonerSkills"
+                        :key="item.name">
+                      <img :src="item.icon"
+                           alt=""
+                           class="mt-3 mb-2">
+                      <span class="fz-12">{{item.name}}</span>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </m-card>
+            <!-- 出装推荐 -->
+            <m-card title="出装推荐"
+                    icon="yuanquan"
+                    plain>
+              <!-- 顺风出装 -->
+              <div class="downwind pb-4 border-bottom">
+                <h3>顺风出装</h3>
+                <ul class="d-flex jc-around">
+                  <li v-for="item in model.items1"
+                      :key="item.name">
+                    <img :src="item.icon"
+                         alt="">
+                    <span class="fz-12">{{item.name}}</span>
+                  </li>
+                </ul>
+                <p>{{model.items1Tips}}</p>
+              </div>
+              <!-- 逆风出装 -->
+              <div class="downwind pb-4 pt-3">
+                <h3>逆风出装</h3>
+                <ul class="d-flex jc-around">
+                  <li v-for="item in model.items2"
+                      :key="item.name">
+                    <img :src="item.icon"
+                         alt="">
+                    <span class="fz-12">{{item.name}}</span>
+                  </li>
+                </ul>
+                <p>{{model.items2Tips}}</p>
+              </div>
+            </m-card>
+            <!-- 铭文推荐 -->
+            <m-card title="铭文推荐"
+                    icon="yuanquan"
+                    plain>
+              <div class="d-flex inscription">
+                <div class="flex-1"
+                     v-for="item in model.inscriptions"
+                     :key="item.name">
+                  <img :src="item.icon"
+                       alt="">
+                  <p class="fz-16">{{item.name}}</p>
+                  <p>{{item.effect1}}</p>
+                  <p>{{item.effect2}}</p>
+                </div>
+              </div>
+            </m-card>
+            <!-- 使用技巧 -->
+            <m-card title="使用技巧"
+                    icon="yuanquan"
+                    plain
+                    class="common">
+              {{model.usageTips}}
+            </m-card>
+            <!-- 对抗技巧 -->
+            <m-card title="对抗技巧"
+                    icon="yuanquan"
+                    plain
+                    class="common">
+              {{model.battleTips}}
+            </m-card>
+            <!-- 团战思路 -->
+            <m-card title="团战思路"
+                    icon="yuanquan"
+                    plain
+                    class="common">
+              {{model.teamTips}}
+            </m-card>
           </div>
         </swiper-slide>
         <!-- 进阶攻略 -->
@@ -85,8 +205,14 @@ export default {
   },
   data() {
     return {
-      model: null
+      model: null,
+      currentSkillIndex: 0
     };
+  },
+  computed: {
+    currentSkill() {
+      return this.model.skills[this.currentSkillIndex];
+    }
   },
   created() {
     this.fetchHeroData();
@@ -101,6 +227,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/scss/_variables";
 .page-hero {
   .top {
     height: 51vw;
@@ -125,6 +252,77 @@ export default {
         }
       }
     }
+  }
+  .skill {
+    img {
+      width: 5rem;
+      height: 5rem;
+      display: block;
+      border-radius: 45%;
+      border: 3px solid transparent;
+      &.active {
+        border-color: map-get($map: $colors, $key: "primary");
+      }
+    }
+  }
+  .punctuate {
+    ul {
+      li {
+        &:first-child {
+          padding-left: 5px;
+          margin-right: 35px;
+        }
+      }
+    }
+    img {
+      width: 4.6154rem;
+      height: 4.6154rem;
+      display: block;
+      border-radius: 50%;
+    }
+  }
+  .summonerSkill {
+    padding-left: 3.4615rem;
+    ol {
+      li {
+        &:first-child {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+  .downwind {
+    ul {
+      li {
+        text-align: center;
+        img {
+          display: block;
+          width: 46.5px;
+          height: 46.5px;
+          border-radius: 50%;
+          margin: 0.8125rem 0 0.3125rem;
+        }
+      }
+    }
+    p {
+      margin-top: 1.1538rem;
+      line-height: 1.5em;
+      color: map-get($map: $colors, $key: "gray");
+    }
+  }
+  .inscription {
+    img {
+      display: block;
+      width: 2.5769rem;
+      height: 3.0385rem;
+    }
+    p {
+      line-height: 1.5em;
+      padding-left: 1rem;
+    }
+  }
+  .common {
+    line-height: 1.5em;
   }
 }
 </style>

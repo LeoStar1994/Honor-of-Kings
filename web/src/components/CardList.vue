@@ -53,8 +53,8 @@ export default {
 @import "../assets/scss/variables";
 .card {
   border-bottom: 1px solid $border-color;
-  .card-header {
+  /* .card-header {
     border-bottom: 1px solid $border-color;
-  }
+  } */
 }
 </style>
