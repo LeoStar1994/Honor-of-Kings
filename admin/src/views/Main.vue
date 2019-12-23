@@ -5,6 +5,7 @@
       <el-menu router
                unique-opened
                :default-active="$route.path">
+        <!-- 内容管理 -->
         <el-submenu index="1">
           <template slot="title">
             <i class="el-icon-document"></i>内容管理
@@ -51,7 +52,7 @@
             <el-menu-item index="/skills/list">召唤师技能列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
-
+        <!-- 运营管理 -->
         <el-submenu index="2">
           <template slot="title">
             <i class="el-icon-postcard"></i>运营管理
@@ -62,6 +63,12 @@
             <el-menu-item index="/articles/create">新建文章</el-menu-item>
             <el-menu-item index="/articles/list">文章列表</el-menu-item>
           </el-menu-item-group>
+          <!-- 视频 -->
+          <el-menu-item-group>
+            <template slot="title">视频</template>
+            <el-menu-item index="/videos/create">新建视频</el-menu-item>
+            <el-menu-item index="/videos/list">视频列表</el-menu-item>
+          </el-menu-item-group>
           <!-- 广告位-->
           <el-menu-item-group>
             <template slot="title">广告</template>
@@ -69,7 +76,7 @@
             <el-menu-item index="/ads/list">广告列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
-
+        <!-- 设置中心 -->
         <el-submenu index="3">
           <template slot="title">
             <i class="el-icon-user"></i>设置中心

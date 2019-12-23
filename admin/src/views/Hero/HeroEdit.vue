@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>{{id ? '编辑' : '新建'}}英雄</h1>
+    <h1>{{ id ? "编辑" : "新建" }}英雄</h1>
     <el-form label-width="120px"
              @submit.native.prevent="save">
       <el-tabs type="border-card"
@@ -26,7 +26,7 @@
                        :before-upload="beforeAvatarUpload">
               <img v-if="model.avatar"
                    :src="model.avatar"
-                   class="avatar">
+                   class="avatar" />
               <i v-else
                  class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
@@ -41,7 +41,7 @@
                        :before-upload="beforeAvatarUpload">
               <img v-if="model.banner"
                    :src="model.banner"
-                   class="avatar">
+                   class="avatar" />
               <i v-else
                  class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
@@ -217,7 +217,7 @@
                            accept="image/*">
                   <img v-if="item.icon"
                        :src="item.icon"
-                       class="avatar">
+                       class="avatar" />
                   <i v-else
                      class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
@@ -238,20 +238,152 @@
                 <el-input v-model="item.description"
                           type="textarea"
                           resize="none"
-                          placeholder="请输入技能名称">
+                          placeholder="请输入技能描述">
                 </el-input>
               </el-form-item>
               <el-form-item label="小提示">
                 <el-input v-model="item.tips"
                           type="textarea"
                           resize="none"
-                          placeholder="请输入技能名称">
+                          placeholder="请输入提示语">
                 </el-input>
               </el-form-item>
               <el-form-item>
                 <el-button type="danger"
                            size="small"
                            @click="() => model.skills.splice(index, 1)">删除
+                </el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-tab-pane>
+
+        <!-- 最佳搭档 -->
+        <el-tab-pane label="最佳搭档"
+                     name="partners">
+          <el-button type="primary"
+                     size="small"
+                     @click="model.partners.push({})"
+                     style="margin-bottom: 20px;">
+            <i class="el-icon-plus"></i>添加搭档
+          </el-button>
+          <el-row type="flex"
+                  style="flex-wrap: wrap">
+            <el-col :md="12"
+                    v-for="(item, index) in model.partners"
+                    :key="index">
+              <el-form-item label="名称">
+                <el-select v-model="item.hero"
+                           placeholder="请选择"
+                           filterable
+                           clearable>
+                  <el-option v-for="item in heroesData"
+                             :key="item.name"
+                             :label="item.name"
+                             :value="item._id">
+                  </el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="描述">
+                <el-input v-model="item.description"
+                          type="textarea"
+                          resize="none"
+                          placeholder="请输入英雄描述">
+                </el-input>
+              </el-form-item>
+
+              <el-form-item>
+                <el-button type="danger"
+                           size="small"
+                           @click="() => model.skills.partners(index, 1)">删除
+                </el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-tab-pane>
+
+        <!-- 被谁克制 -->
+        <el-tab-pane label="被谁克制"
+                     name="foes">
+          <el-button type="primary"
+                     size="small"
+                     @click="model.foes.push({})"
+                     style="margin-bottom: 20px;">
+            <i class="el-icon-plus"></i>添加敌人
+          </el-button>
+          <el-row type="flex"
+                  style="flex-wrap: wrap">
+            <el-col :md="12"
+                    v-for="(item, index) in model.foes"
+                    :key="index">
+              <el-form-item label="名称">
+                <el-select v-model="item.hero"
+                           placeholder="请选择"
+                           filterable
+                           clearable>
+                  <el-option v-for="item in heroesData"
+                             :key="item.name"
+                             :label="item.name"
+                             :value="item._id">
+                  </el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="描述">
+                <el-input v-model="item.description"
+                          type="textarea"
+                          resize="none"
+                          placeholder="请输入英雄描述">
+                </el-input>
+              </el-form-item>
+
+              <el-form-item>
+                <el-button type="danger"
+                           size="small"
+                           @click="() => model.foes.splice(index, 1)">删除
+                </el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-tab-pane>
+
+        <!-- 克制谁 -->
+        <el-tab-pane label="克制谁"
+                     name="restrains">
+          <el-button type="primary"
+                     size="small"
+                     @click="model.restrains.push({})"
+                     style="margin-bottom: 20px;">
+            <i class="el-icon-plus"></i>添加克制英雄
+          </el-button>
+          <el-row type="flex"
+                  style="flex-wrap: wrap">
+            <el-col :md="12"
+                    v-for="(item, index) in model.restrains"
+                    :key="index">
+              <el-form-item label="名称">
+                <el-select v-model="item.hero"
+                           placeholder="请选择"
+                           filterable
+                           clearable>
+                  <el-option v-for="item in heroesData"
+                             :key="item.name"
+                             :label="item.name"
+                             :value="item._id">
+                  </el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item label="描述">
+                <el-input v-model="item.description"
+                          type="textarea"
+                          resize="none"
+                          placeholder="请输入英雄描述">
+                </el-input>
+              </el-form-item>
+
+              <el-form-item>
+                <el-button type="danger"
+                           size="small"
+                           @click="() => model.restrains.splice(index, 1)">删除
                 </el-button>
               </el-form-item>
             </el-col>
@@ -281,6 +413,7 @@ export default {
       items: [], // 装备数据
       summonerSkillsData: [], // 召唤师技能数据
       inscriptionsData: [], //铭文数据
+      heroesData: [],
       model: {
         name: "",
         title: "",
@@ -293,6 +426,9 @@ export default {
           survive: 0
         },
         skills: [], // 技能
+        partners: [], // 最佳搭档
+        foes: [], // 被谁克制
+        restrain: [], //克制谁
         items1: [], // 顺风出装
         items2: [], // 逆风出装
         summonerSkills: [], // 召唤师技能
@@ -347,6 +483,11 @@ export default {
       const res = await this.$http.get(`rest/inscriptions`);
       this.inscriptionsData = res.data;
     },
+    //请求英雄数据
+    async fetchHeroes() {
+      const res = await this.$http.get(`rest/heroes`);
+      this.heroesData = res.data;
+    },
     // 反显图片
     handleAvatarSuccess(res) {
       this.model.avatar = res.url;
@@ -366,6 +507,7 @@ export default {
     this.fetchItems();
     this.fetchSummonerSkills();
     this.fetchInscriptions();
+    this.fetchHeroes();
     // id存在时才请求数据
     this.id && this.fetch();
   }

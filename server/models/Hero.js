@@ -52,6 +52,18 @@ const schema = new mongoose.Schema({
       hero: { type: mongoose.SchemaTypes.ObjectId, ref: "Hero" },
       description: { type: String }
     }
+  ],
+  foes: [
+    {
+      hero: { type: mongoose.SchemaTypes.ObjectId, ref: "Hero" },
+      description: { type: String }
+    }
+  ],
+  restrains: [
+    {
+      hero: { type: mongoose.SchemaTypes.ObjectId, ref: "Hero" },
+      description: { type: String }
+    }
   ]
 });
 

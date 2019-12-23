@@ -49,7 +49,7 @@
         </ul>
       </template>
     </m-list-card>
-
+    <!-- 英雄列表 -->
     <m-list-card icon='hero'
                  title="英雄列表"
                  :categories="heroCategories">
@@ -70,7 +70,34 @@
         </ol>
       </template>
     </m-list-card>
-
+    <!-- 精彩视频 -->
+    <m-list-card icon='video'
+                 title="精彩视频"
+                 :categories="videoCategories">
+      <template #items='{category}'>
+        <ul class="d-flex flex-wrap">
+          <li style="width:50%"
+              class="video-li mb-4"
+              v-for="(video, index) in category.videoList"
+              :key="index">
+            <a :href="video.playUrl"
+               target="_blank"
+               :title="video.title">
+              <img :src="video.banner"
+                   alt="">
+              <p class="mt-2">{{video.title}}</p>
+            </a>
+            <div class="d-flex text-gray fz-12 mt-1 pr-2 ai-center">
+              <div class="flex-1">
+                <i class="iconfont icon-video"></i>
+                {{video.viewCounts}}
+              </div>
+              <span style="30px">{{video.time}}</span>
+            </div>
+          </li>
+        </ul>
+      </template>
+    </m-list-card>
   </div>
 
 </template>
@@ -158,7 +185,9 @@ export default {
       // 新闻
       newsCategories: [],
       // 英雄
-      heroCategories: []
+      heroCategories: [],
+      // 视频
+      videoCategories: []
     };
   },
   methods: {
@@ -169,11 +198,16 @@ export default {
     async fetchHeroCategories() {
       const res = await this.$http.get("heroes/list");
       this.heroCategories = res.data;
+    },
+    async fetchVideoCategories() {
+      const res = await this.$http.get("videos/list");
+      this.videoCategories = res.data;
     }
   },
   created() {
     this.fetchNewsCategories();
     this.fetchHeroCategories();
+    this.fetchVideoCategories();
   }
 };
 </script>
@@ -207,6 +241,27 @@ export default {
     }
     p {
       bottom: 0;
+    }
+  }
+}
+
+.video-li {
+  a {
+    color: #000;
+    &:visited {
+      color: #999;
+    }
+    p {
+      line-height: 1.5em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+    }
+    img {
+      width: 98%;
+      height: 7.307rem;
     }
   }
 }

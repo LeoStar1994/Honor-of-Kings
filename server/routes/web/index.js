@@ -6,8 +6,9 @@ module.exports = app => {
   const Category = mongoose.model("Category");
   const Article = mongoose.model("Article");
   const Hero = mongoose.model("Hero");
+  const Video = mongoose.model("Video");
 
-  // 导入新闻数据
+  // 初始化导入新闻数据
   router.get("/news/init", async (req, res) => {
     const parent = await Category.findOne({
       name: "新闻分类"
@@ -104,7 +105,7 @@ module.exports = app => {
     res.send(cats);
   });
 
-  // 导入英雄数据
+  // 初始化导入英雄数据
   router.get("/heroes/init", async (req, res) => {
     await Hero.deleteMany({});
     const rowData = [
@@ -112,14 +113,14 @@ module.exports = app => {
         name: "热门",
         heroes: [
           {
+            name: "后羿",
+            avatar:
+              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/169/169.jpg"
+          },
+          {
             name: "孙悟空",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/167/167.jpg"
-          },
-          {
-            name: "鲁班七号",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/112/112.jpg"
           },
           {
             name: "铠",
@@ -127,9 +128,9 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/193/193.jpg"
           },
           {
-            name: "后羿",
+            name: "鲁班七号",
             avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/169/169.jpg"
+              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/112/112.jpg"
           },
           {
             name: "亚瑟",
@@ -137,29 +138,29 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/166/166.jpg"
           },
           {
-            name: "孙尚香",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/111/111.jpg"
-          },
-          {
-            name: "安琪拉",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/142/142.jpg"
-          },
-          {
             name: "甄姬",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/127/127.jpg"
           },
           {
-            name: "妲己",
+            name: "孙尚香",
             avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/109/109.jpg"
+              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/111/111.jpg"
+          },
+          {
+            name: "典韦",
+            avatar:
+              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/129/129.jpg"
           },
           {
             name: "韩信",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/150/150.jpg"
+          },
+          {
+            name: "庄周",
+            avatar:
+              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/113/113.jpg"
           }
         ]
       },
@@ -172,11 +173,6 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/107/107.jpg"
           },
           {
-            name: "墨子",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/108/108.jpg"
-          },
-          {
             name: "钟无艳",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/117/117.jpg"
@@ -185,11 +181,6 @@ module.exports = app => {
             name: "吕布",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/123/123.jpg"
-          },
-          {
-            name: "夏侯惇",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/126/126.jpg"
           },
           {
             name: "曹操",
@@ -222,11 +213,6 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/140/140.jpg"
           },
           {
-            name: "程咬金",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/144/144.jpg"
-          },
-          {
             name: "露娜",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/146/146.jpg"
@@ -235,11 +221,6 @@ module.exports = app => {
             name: "花木兰",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/154/154.jpg"
-          },
-          {
-            name: "橘右京",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/163/163.jpg"
           },
           {
             name: "亚瑟",
@@ -255,11 +236,6 @@ module.exports = app => {
             name: "刘备",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/170/170.jpg"
-          },
-          {
-            name: "钟馗",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/175/175.jpg"
           },
           {
             name: "杨戬",
@@ -282,24 +258,9 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/193/193.jpg"
           },
           {
-            name: "苏烈",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/194/194.jpg"
-          },
-          {
-            name: "裴擒虎",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/502/502.jpg"
-          },
-          {
             name: "狂铁",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/503/503.jpg"
-          },
-          {
-            name: "孙策",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/510/510.jpg"
           },
           {
             name: "李信",
@@ -310,21 +271,6 @@ module.exports = app => {
             name: "盘古",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/529/529.jpg"
-          },
-          {
-            name: "云中君",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/506/506.jpg"
-          },
-          {
-            name: "曜",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/522/522.jpg"
-          },
-          {
-            name: "马超",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/518/518.jpg"
           }
         ]
       },
@@ -355,11 +301,6 @@ module.exports = app => {
             name: "高渐离",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/115/115.jpg"
-          },
-          {
-            name: "孙膑",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/118/118.jpg"
           },
           {
             name: "扁鹊",
@@ -395,11 +336,6 @@ module.exports = app => {
             name: "安琪拉",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/142/142.jpg"
-          },
-          {
-            name: "露娜",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/146/146.jpg"
           },
           {
             name: "姜子牙",
@@ -457,11 +393,6 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/504/504.jpg"
           },
           {
-            name: "司马懿",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/137/137.jpg"
-          },
-          {
             name: "沈梦溪",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/312/312.jpg"
@@ -475,11 +406,6 @@ module.exports = app => {
             name: "嫦娥",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/515/515.jpg"
-          },
-          {
-            name: "西施",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/523/523.jpg"
           }
         ]
       },
@@ -492,19 +418,9 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/105/105.jpg"
           },
           {
-            name: "庄周",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/113/113.jpg"
-          },
-          {
             name: "刘禅",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/114/114.jpg"
-          },
-          {
-            name: "钟无艳",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/117/117.jpg"
           },
           {
             name: "白起",
@@ -512,24 +428,9 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/120/120.jpg"
           },
           {
-            name: "芈月",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/121/121.jpg"
-          },
-          {
-            name: "吕布",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/123/123.jpg"
-          },
-          {
             name: "夏侯惇",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/126/126.jpg"
-          },
-          {
-            name: "达摩",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/134/134.jpg"
           },
           {
             name: "项羽",
@@ -547,11 +448,6 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/149/149.jpg"
           },
           {
-            name: "亚瑟",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/166/166.jpg"
-          },
-          {
             name: "牛魔",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/168/168.jpg"
@@ -562,19 +458,9 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/171/171.jpg"
           },
           {
-            name: "太乙真人",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/186/186.jpg"
-          },
-          {
             name: "东皇太一",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/187/187.jpg"
-          },
-          {
-            name: "铠",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/193/193.jpg"
           },
           {
             name: "苏烈",
@@ -592,11 +478,6 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/510/510.jpg"
           },
           {
-            name: "嫦娥",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/515/515.jpg"
-          },
-          {
             name: "猪八戒",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/511/511.jpg"
@@ -607,11 +488,6 @@ module.exports = app => {
         name: "刺客",
         heroes: [
           {
-            name: "赵云",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/107/107.jpg"
-          },
-          {
             name: "阿轲",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/116/116.jpg"
@@ -620,11 +496,6 @@ module.exports = app => {
             name: "李白",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/131/131.jpg"
-          },
-          {
-            name: "貂蝉",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/141/141.jpg"
           },
           {
             name: "韩信",
@@ -637,16 +508,6 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/153/153.jpg"
           },
           {
-            name: "花木兰",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/154/154.jpg"
-          },
-          {
-            name: "不知火舞",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/157/157.jpg"
-          },
-          {
             name: "娜可露露",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/162/162.jpg"
@@ -655,16 +516,6 @@ module.exports = app => {
             name: "橘右京",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/163/163.jpg"
-          },
-          {
-            name: "孙悟空",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/167/167.jpg"
-          },
-          {
-            name: "百里守约",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/196/196.jpg"
           },
           {
             name: "百里玄策",
@@ -687,19 +538,9 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/137/137.jpg"
           },
           {
-            name: "上官婉儿",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/513/513.jpg"
-          },
-          {
             name: "云中君",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/506/506.jpg"
-          },
-          {
-            name: "马超",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/518/518.jpg"
           }
         ]
       },
@@ -777,29 +618,9 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/113/113.jpg"
           },
           {
-            name: "刘禅",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/114/114.jpg"
-          },
-          {
             name: "孙膑",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/118/118.jpg"
-          },
-          {
-            name: "姜子牙",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/148/148.jpg"
-          },
-          {
-            name: "牛魔",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/168/168.jpg"
-          },
-          {
-            name: "张飞",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/171/171.jpg"
           },
           {
             name: "蔡文姬",
@@ -827,11 +648,6 @@ module.exports = app => {
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/501/501.jpg"
           },
           {
-            name: "杨玉环",
-            avatar:
-              "https://game.gtimg.cn/images/yxzj/img201606/heroimg/176/176.jpg"
-          },
-          {
             name: "盾山",
             avatar:
               "https://game.gtimg.cn/images/yxzj/img201606/heroimg/509/509.jpg"
@@ -847,7 +663,7 @@ module.exports = app => {
     for (let cat of rowData) {
       // 如果英雄类别是热门，跳出继续下轮循环
       if (cat.name === "热门") {
-        continue;
+        continue
       }
       // 找到当前分类在数据库中对应的数据
       const category = await Category.findOne({
@@ -894,6 +710,193 @@ module.exports = app => {
     res.send(cats);
   });
 
+  // 初始化导入视频数据
+  router.get("/videos/init", async (req, res) => {
+    const parent = await Category.findOne({
+      name: "视频分类"
+    });
+    const videoSubCats = await Category.find()
+      .where({
+        parent: parent
+      })
+      .lean();
+    const videoDatas = [
+      {
+        title: "【百星王者带你飞】第118期：起舞弄清影 绝世舞姬貂蝉",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=573993&e_code=pvpweb_m.statictypenew.type587",
+        viewCounts: "575.6万",
+        time: "12-06",
+        banner:
+          "https://itea-cdn.qq.com/file/tgl/20191204/a8f73a12cdddf0f835c47d97c73a52de.1575427262.f75baf40b753a6e14ce1b426627c79d8.230x140_8729.jpg"
+      },
+      {
+        title: "【王者克制论】曹三刀丝血反杀太霸道？李九教你完美克制曹操",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=574314&e_code=pvpweb_m.statictypenew.type587",
+        viewCounts: "12.7万",
+        time: "12-06",
+        banner:
+          "https://itea-cdn.qq.com/file/tgl/20191205/53873bcaec5c3fe56e9d681410452d30.1575515228.9709ee46fe3e77ce42d027339f038d77.230x140_38347.jpg"
+      },
+      {
+        title: "【峡谷情报局】第91期：最高荣耀战力盘点，鲁班大师套路展示",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=573807&e_code=pvpweb_m.statictypenew.type587",
+        viewCounts: "436.4万",
+        time: "12-03",
+        banner:
+          "https://itea-cdn.qq.com/file/tgl/20191203/a8f73a12cdddf0f835c47d97c73a52de.1575342538.41b272d8f476a45a1ac4f66f0dcc70e5.230x140_16463.jpg"
+      },
+      {
+        title: "【新天下王者】第5期：机车少年变奶爸 北笙吐露真心话",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=572907&e_code=pvpweb_m.statictypenew.type0",
+        viewCounts: "532.2万",
+        time: "11-30",
+        banner:
+          "https://itea-cdn.qq.com/file/tgl/20191128/a8f73a12cdddf0f835c47d97c73a52de.1574938598.5425161c4b6efa623d88455752eb1af7.230x140_10776.jpg"
+      },
+      {
+        title: "猴子和兰陵王遇到神级马可，连续的反杀操作，打得两人没有脾气",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=549791&e_code=pvpweb_m.statictypenew.type641",
+        viewCounts: "4万",
+        time: "09-02",
+        banner:
+          "https://itea-cdn.qq.com/file/tgl/20190829/0fed9150bb660fe087fc5b81a2b8d50b.1567084750.7a6176cf4229f5978f81c252e59b1c71.230x140_19614.jpg"
+      },
+      {
+        title: "在这个模式玩钟馗，不想成辅助都难哦！",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=549402&e_code=pvpweb_m.statictypenew.type675",
+        viewCounts: "8798",
+        time: "08-31",
+        banner:
+          "https://itea-cdn.qq.com/file/tgl/20190828/c81e728d9d4c2f636f067f89cc14862c.1566979174.49877d84db3db2e7e7c9dec467347647.230x140_16202.jpg"
+      },
+      {
+        title: "王者荣耀排位日常：功能型法师张良，更偏向于控制，多游走支援！",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=550203&e_code=pvpweb_m.statictypenew.type619",
+        viewCounts: "2.5万",
+        time: "09-02",
+        banner:
+          "https://itea-cdn.qq.com/file/tgl/20190831/34ba14d7e74b333126620db8148b7a4a.1567236016.96cfd48480b6f569f5deb0869ddd8925.230x140_43156.jpg"
+      },
+      {
+        title: "王者荣耀s16边路上分英雄首选是谁？职业玩家都玩的英雄橘子！",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=539533&e_code=pvpweb_m.statictypenew.type623",
+        viewCounts: "1.9万",
+        time: "09-09",
+        banner: "https://puui.qpic.cn/qqvideo_ori/0/p0904oeyu12_1280_720/0"
+      },
+      {
+        title: "【KPL冬季席位赛】败者组 YSL vs XM 第5局",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=575084&e_code=pvpweb_m.statictypenew.type587",
+        viewCounts: "1072",
+        time: "12-09",
+        banner:
+          "https://shp.qpic.cn/cfwebcap/0/7f349f95aeb0f4cb3ad66abada6ea115/0/?width=230&height=140"
+      },
+      {
+        title: "【KPL冬季席位赛】败者组 YSL vs XM 第4局",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=575083&e_code=pvpweb_m.statictypenew.type587",
+        viewCounts: "212",
+        time: "12-09",
+        banner:
+          "https://shp.qpic.cn/cfwebcap/0/a99bfac3e4f78f28fcf96a9e53cdfc6b/0/?width=230&height=140"
+      },
+      {
+        title: "【KPL冬季席位赛】败者组 YSL vs XM 第3局",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=575080&e_code=pvpweb_m.statictypenew.type587",
+        viewCounts: "232",
+        time: "12-09",
+        banner:
+          "https://shp.qpic.cn/cfwebcap/0/a62ded0bd7c98d1b4b8624117e508023/0/?width=230&height=140"
+      },
+      {
+        title: "【KPL冬季席位赛】败者组 YSL vs XM 第2局",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=575079&e_code=pvpweb_m.statictypenew.type587",
+        viewCounts: "201",
+        time: "12-09",
+        banner:
+          "https://shp.qpic.cn/cfwebcap/0/0ca77cc2f07020b0983ea16293cd175c/0/?width=230&height=140"
+      },
+      {
+        title: "王者荣耀世冠：远游之枪华丽收割，花满楼世冠马可波罗击杀集锦",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=550567&e_code=pvpweb_m.statictypenew.type751",
+        viewCounts: "3.6万",
+        time: "09-03",
+        banner: "https://puui.qpic.cn/qqvideo_ori/0/z092122i7uv_1280_720/0"
+      },
+      {
+        title: "Djie一闪侧翼进场，梦奇小爪子疯狂乱舞！",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=550792&e_code=pvpweb_m.statictypenew.type751",
+        viewCounts: "1.5万",
+        time: "09-02",
+        banner: "https://puui.qpic.cn/qqvideo_ori/0/g0921jhs0ha_1280_720/0"
+      },
+      {
+        title: "花海云中君暴走时刻，这波三杀真的帅气！",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=550566&e_code=pvpweb_m.statictypenew.type751",
+        viewCounts: "1.5万",
+        time: "09-02",
+        banner: "https://puui.qpic.cn/qqvideo_ori/0/r09212zlrm4_1280_720/0"
+      },
+      {
+        title: "世冠雨雨关羽集锦：这就是实力！千万雄兵莫敢当，单刀匹马斩四方",
+        playUrl:
+          "https://pvp.qq.com/m/m201606/detail.shtml?G_Biz=18&tid=550251&e_code=pvpweb_m.statictypenew.type751",
+        viewCounts: "2.5万",
+        time: "09-01",
+        banner: "https://puui.qpic.cn/qqvideo_ori/0/b0921yawkou_1280_720/0"
+      }
+    ];
+    videoDatas.forEach((video, i) => {
+      if (i < 4) {
+        video.categories = videoSubCats[0];
+      } else if (i < 8) {
+        video.categories = videoSubCats[1];
+      } else if (i < 12) {
+        video.categories = videoSubCats[2];
+      } else {
+        video.categories = videoSubCats[3];
+      }
+    });
+    await Video.deleteMany();
+    await Video.insertMany(videoDatas);
+    res.send(videoDatas);
+  });
+
+  // 视频列表接口
+  router.get("/videos/list", async (req, res) => {
+    const parent = await Category.findOne({
+      name: "视频分类"
+    });
+    // 获取视频子分类
+    const cats = await Category.aggregate([
+      { $match: { parent: parent._id } },
+      {
+        $lookup: {
+          from: "videos",
+          localField: "_id",
+          foreignField: "categories",
+          as: "videoList"
+        }
+      }
+    ]);
+    res.send(cats);
+  });
+
   // 获取文章详情接口
   router.get("/articles/:id", async (req, res) => {
     const id = req.params.id;
@@ -912,7 +915,9 @@ module.exports = app => {
   router.get("/heroes/:id", async (req, res) => {
     const id = req.params.id;
     const data = await Hero.findById(id)
-      .populate("categories items1 items2 summonerSkills inscriptions")
+      .populate(
+        "categories items1 items2 summonerSkills inscriptions partners.hero restrains.hero foes.hero"
+      )
       .lean();
     res.send(data);
   });

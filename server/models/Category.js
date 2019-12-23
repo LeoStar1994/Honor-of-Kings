@@ -21,5 +21,12 @@ schema.virtual("newsList", {
   ref: "Article"
 });
 
+schema.virtual("videoList", {
+  localField: "_id",
+  foreignField: "categories",
+  justOne: false,
+  ref: "Video"
+});
+
 // 创建模型
 module.exports = mongoose.model("Category", schema);

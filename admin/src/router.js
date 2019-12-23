@@ -122,6 +122,23 @@ const router = new Router({
           name: "articlesList",
           component: () => import("./views/Article/ArticleList.vue")
         },
+        /* 视频 */
+        {
+          path: "/videos/create",
+          name: "videosCreate",
+          component: () => import("./views/Video/VideoEdit.vue")
+        },
+        {
+          path: "/videos/edit/:id",
+          name: "videosEdit",
+          component: () => import("./views/Video/VideoEdit.vue"),
+          props: true
+        },
+        {
+          path: "/videos/list",
+          name: "videosList",
+          component: () => import("./views/Video/VideoList.vue")
+        },
         /* 广告 */
         {
           path: "/ads/create",
