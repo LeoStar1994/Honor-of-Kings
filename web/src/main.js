@@ -17,7 +17,8 @@ Vue.component("m-card", Card);
 
 import axios from "axios";
 Vue.prototype.$http = axios.create({
-  baseURL: "http://localhost:3000/web/api"
+  baseURL: process.env.VUE_APP_API_URL || "/web/api"
+  // baseURL: "http://localhost:3000/web/api"
 });
 
 // 全局时间格式化过滤器

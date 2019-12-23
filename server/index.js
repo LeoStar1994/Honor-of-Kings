@@ -10,7 +10,9 @@ app.set("secret", "89j983jiudbaug2o30123");
 app.use(CORS());
 // 解析post请求数据 body-parser
 app.use(express.json());
-// 上传文件静态化
+// 文件静态化
+app.use("/", express.static(__dirname + "/web"));
+app.use("/admin", express.static(__dirname + "/admin"));
 app.use("/uploads", express.static(__dirname + "/uploads"));
 
 require("./db/db.js")(app);
