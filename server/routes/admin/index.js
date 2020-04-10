@@ -76,7 +76,7 @@ module.exports = app => {
     async (req, res) => {
       const file = req.file;
       // 拼接图片地址作为url挂载至file上
-      file.url = `http://localhost:3000/uploads/${file.filename}`;
+      file.url = `http://luckyleo99.com/uploads/${file.filename}`;
       res.send(file);
     }
   );
